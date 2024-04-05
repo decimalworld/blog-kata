@@ -1,0 +1,19 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+AllCops:
+  NewCops: enable
+  Exclude:
+    - ./bin/**/*
+    - ./log/**/*
+    - ./db/**/*
+    - ./vender/**/*
+    - ./tmp/**/*
+    - ./storage/**/*
+  TargetRubyVersion: 3.2
+  SuggestExtensions: false
+
+Layout/LineLength:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
