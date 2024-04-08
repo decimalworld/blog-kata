@@ -10,24 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_05_104359) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_09_090147) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "articles", force: :cascade do |t|
+  create_table "articles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title", limit: 300, null: false
     t.string "body", limit: 2000, null: false
     t.string "summary", limit: 300, null: false
+    t.string "slug", limit: 300
     t.uuid "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "cover_id"
     t.index ["author_id"], name: "index_articles_on_author_id"
+    t.index ["cover_id"], name: "index_articles_on_cover_id"
+    t.index ["slug"], name: "index_articles_on_slug"
   end
 
-  create_table "jwt_denylists", force: :cascade do |t|
+  create_table "images", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "imageable_id"
+    t.string "imageable_type", null: false
+    t.string "extension", default: "txt", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["imageable_id"], name: "index_images_on_imageable_id"
+  end
+
+  create_table "jwt_denylists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "jti", null: false
+    t.datetime "exp", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["jti"], name: "index_jwt_denylists_on_jti"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

@@ -20,11 +20,12 @@
 #  index_articles_on_cover_id   (cover_id)
 #  index_articles_on_slug       (slug)
 #
-FactoryBot.define do
-  factory :article do
-    title { Faker::Lorem.sentence }
-    summary { Faker::Lorem.paragraph }
-    body { Faker::Lorem.paragraph }
-    author factory: %i[user admin]
+class ArticleSerializer < ActiveModel::Serializer
+  attributes  :id, :title, :cover_url, :summary, :slug, :author_name
+  attribute   :body, if: -> { instance_options[:full_serializer] == true }
+  attributes  :created_at, :updated_at
+
+  def cover_url
+    object.cover_presigned_url ? object.cover_presigned_url : object.cover_url
   end
 end

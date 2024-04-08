@@ -10,10 +10,15 @@ AllCops:
     - ./vender/**/*
     - ./tmp/**/*
     - ./storage/**/*
+    - ./lib/tasks/*
   TargetRubyVersion: 3.2
   SuggestExtensions: false
 
 Layout/LineLength:
   Enabled: false
 Style/Documentation:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+Metrics/MethodLength:
   Enabled: false

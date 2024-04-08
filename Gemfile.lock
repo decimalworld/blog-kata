@@ -84,6 +84,22 @@ GEM
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
     ast (2.4.2)
+    aws-eventstream (1.3.0)
+    aws-partitions (1.910.0)
+    aws-sdk-core (3.191.6)
+      aws-eventstream (~> 1, >= 1.3.0)
+      aws-partitions (~> 1, >= 1.651.0)
+      aws-sigv4 (~> 1.8)
+      jmespath (~> 1, >= 1.6.1)
+    aws-sdk-kms (1.78.0)
+      aws-sdk-core (~> 3, >= 3.191.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.146.1)
+      aws-sdk-core (~> 3, >= 3.191.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.8)
+    aws-sigv4 (1.8.0)
+      aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
     bigdecimal (3.1.7)
@@ -140,10 +156,23 @@ GEM
     irb (1.12.0)
       rdoc
       reline (>= 0.4.2)
+    jmespath (1.6.2)
     json (2.7.2)
     jsonapi-renderer (0.2.2)
     jwt (2.8.1)
       base64
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
     loofah (2.22.0)
       crass (~> 1.0.2)
@@ -182,6 +211,8 @@ GEM
       stringio
     puma (6.4.2)
       nio4r (~> 2.0)
+    pundit (2.3.1)
+      activesupport (>= 3.0.0)
     racc (1.7.3)
     rack (3.0.10)
     rack-session (2.0.0)
@@ -307,6 +338,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   annotate
+  aws-sdk-s3
   bootsnap
   brakeman
   bullet
@@ -315,8 +347,10 @@ DEPENDENCIES
   devise-jwt
   factory_bot_rails
   faker
+  kaminari
   pg (~> 1.1)
   puma (>= 5.0)
+  pundit
   rails (~> 7.1.3, >= 7.1.3.2)
   rspec-rails
   rubocop-rails

@@ -12,10 +12,13 @@ gem 'pg', '~> 1.1'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'active_model_serializers'
+gem 'aws-sdk-s3'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'devise-jwt'
+gem 'kaminari'
 gem 'puma', '>= 5.0'
+gem 'pundit'
 gem 'tzinfo-data', platforms: %i[windows jruby]
 
 group :development, :test do

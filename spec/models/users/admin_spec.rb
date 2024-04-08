@@ -21,12 +21,12 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_username              (username) UNIQUE
 #
-class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :email
-  attribute :token, if: :with_token?
-  attributes :created_at, :updated_at
+require 'rails_helper'
 
-  def with_token?
-    object.token
+RSpec.describe Users::Admin do
+  let(:admin) { build(:user, :admin) }
+
+  context 'when associate' do
+    it { expect(admin).to have_many(:articles) }
   end
 end

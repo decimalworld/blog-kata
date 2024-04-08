@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Guest
+module Admins
   class RegistrationsController < Devise::RegistrationsController
     def create
       super { |resource| raise ActiveRecord::RecordInvalid, resource unless resource.persisted? }

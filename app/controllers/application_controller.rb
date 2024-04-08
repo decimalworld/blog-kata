@@ -2,7 +2,13 @@
 
 class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
+
   include ErrorHandler
+  include ResponseHandler
+  include ParamsHandler
+  include Pundit::Authorization
+
+  devise_group :user, contains: %i[guest admin]
 
   protected
 

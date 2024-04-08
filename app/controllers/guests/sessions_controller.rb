@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Guest
+module Guests
   class SessionsController < Devise::SessionsController
     def respond_with(resource, *)
       sign_out
